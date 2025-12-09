@@ -1,4 +1,4 @@
-import prisma from "../config/prisma";
+import prisma from "../config/prisma.js";
 import { Scene } from "@prisma/client";
 
 type CreateSceneData = {
