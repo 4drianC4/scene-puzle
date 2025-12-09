@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 
 // Importar rutas
 import userRoutes from './routes/user.routes.js';
+import characteresRoutes from './routes/character.routes.js';
+import scenesRoutes from './routes/scene.routes.js';
 
 dotenv.config();
 
@@ -16,14 +18,16 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rutas
 app.use('/api/users', userRoutes);
+app.use('/api/characters', characteresRoutes);
+app.use('/api/scenes', scenesRoutes);
 
 // Ruta de prueba
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (_req: Request, res: Response) => {
   res.json({ message: 'API funcionando correctamente' });
 });
 
 // Manejo de errores
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Algo salió mal!' });
 });

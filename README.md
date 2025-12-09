@@ -1,4 +1,4 @@
-# Scene Puzle - Express + Prisma (MVC)
+# Scene Puzzle - Express + Prisma (MVC)
 
 Proyecto Express con Prisma siguiendo la arquitectura MVC (Modelo-Vista-Controlador).
 
