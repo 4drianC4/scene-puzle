@@ -11,3 +11,6 @@ cmds = ["npx prisma generate", "npm run build"]
 
 [start]
 cmd = "npx prisma migrate deploy && node dist/server.js"
+
+[variables]
+PORT = "3000"
