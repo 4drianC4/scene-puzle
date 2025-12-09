@@ -33,7 +33,21 @@ app.use('/api/scenes', scenesRoutes);
 
 // Ruta de prueba
 app.get('/', (_req: Request, res: Response) => {
-  res.json({ message: 'API funcionando correctamente' });
+  res.json({ 
+    message: 'API funcionando correctamente',
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      users: '/api/users',
+      characters: '/api/characters',
+      scenes: '/api/scenes'
+    }
+  });
+});
+
+// Health check
+app.get('/health', (_req: Request, res: Response) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // Manejo de errores
