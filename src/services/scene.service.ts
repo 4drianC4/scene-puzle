@@ -4,7 +4,7 @@ import { Scene } from "@prisma/client";
 type CreateSceneData = {
     title: string;
     description?: string | null;
-    image: string;
+    image?: string | null;
 };
 
 export const getAllScenes = async (): Promise<Scene[]> => {

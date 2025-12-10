@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import prisma from './config/prisma.js';
 
 // Importar rutas
 import userRoutes from './routes/user.routes.js';
@@ -57,8 +58,23 @@ app.get('/', (_req: Request, res: Response) => {
 });
 
 // Health check
-app.get('/health', (_req: Request, res: Response) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+app.get('/health', async (_req: Request, res: Response) => {
+  try {
+    // Verificar conexión a base de datos
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ 
+      status: 'ok',
+      database: 'connected',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Health check failed:', error);
+    res.status(500).json({ 
+      status: 'error',
+      database: 'disconnected',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
 });
 
 // Manejo de errores
