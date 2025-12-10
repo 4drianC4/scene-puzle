@@ -2,15 +2,13 @@
 
 [phases.setup]
 nixPkgs = ["nodejs_20", "openssl"]
+nixLibs = ["openssl"]
 
 [phases.install]
-cmds = ["npm ci"]
+cmds = ["npm ci", "npx prisma generate"]
 
 [phases.build]
-cmds = ["npx prisma generate", "npm run build"]
+cmds = ["npm run build"]
 
 [start]
 cmd = "npx prisma migrate deploy && node dist/server.js"
-
-[variables]
-PORT = "3000"

@@ -24,5 +24,3 @@ prisma/migrations/
 # TypeScript
 dist/
 *.tsbuildinfo
-
-*.yml
